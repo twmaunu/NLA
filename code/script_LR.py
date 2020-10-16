@@ -1,5 +1,7 @@
 # Example script to run the logistic regression experiment
+iasdfasdf
 
+help:
 import sys, getopt
 from mirrorLangevinMC import *
 import numpy as np
