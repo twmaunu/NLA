@@ -1,4 +1,4 @@
-# Example script to run the logistic regression
+# Example script to run the logistic regression experiment
 
 import sys, getopt
 from mirrorLangevinMC import *
