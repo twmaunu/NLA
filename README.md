@@ -13,18 +13,18 @@ pip install -r requirements.txt
 
 ## Sampling 
 
-To train the model(s) in the paper, run this command:
+To sample from a distribution, implement the following code: 
 
-```train
-python train.py --input-data <path_to_data> --alpha 10 --beta 20
+```
+
 ```
 
 ## Evaluation 
 
 To evaluate samples,
 
-```eval
-python eval.py --model-file mymodel.pth --benchmark imagenet
+```
+
 ```
 
 ## Results
