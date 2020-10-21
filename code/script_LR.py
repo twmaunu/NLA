@@ -1,13 +1,10 @@
 # Example script to run the logistic regression experiment
-iasdfasdf
 
-help:
 import sys, getopt
 from mirrorLangevinMC import *
 import numpy as np
 import math
 import matplotlib.pyplot as plt
-import seaborn as sns
 from numpy.linalg import inv
 from numpy.linalg import norm
 from scipy.linalg import sqrtm
@@ -15,14 +12,17 @@ from scipy.linalg import null_space
 from scipy.special import gamma, logit
 from tqdm import tqdm
 
-# parse and create directory
-# step = float(sys.argv[1])
-# import os
-# path = os.getcwd() + "/" + str(step) 
-# try:
-#     os.mkdir(path)
-# except:
-#     print("Path already created, overwriting contents")
+# Choose number of repetitions for experiment and step size
+step = 0.1
+reps = 1 
+
+# create directory
+import os
+path = os.getcwd() + "/LR_" + str(step) 
+try:
+    os.mkdir(path)
+except:
+    print("Path already created, overwriting contents")
 
 
 # Example: logistic regression
@@ -32,11 +32,11 @@ from tqdm import tqdm
 d = 2 
 # number of samples 
 N = 500
+# burn-in
 bi = 500
 #initial parameter
 beta0 = np.ones(shape=(d,))
-# how many times to repeat the experiment
-reps = 10 
+
 
 ###################################################
 # generate data
@@ -94,20 +94,26 @@ for r in tqdm(range(reps)):
 
 ####################################
 # save outputs
-np.save('output' + '/mLs.npy', mLs)
-np.save('output' + '/mNs.npy', mNs)
-np.save('output' + '/mTs.npy', mTs)
-np.save('output' + '/CLs.npy', CLs)
-np.save('output' + '/CNs.npy', CNs)
-np.save('output' + '/CTs.npy', CTs)
-np.save('output' + '/YLs.npy', YLs)
-np.save('output' + '/YNs.npy', YNs)
-np.save('output' + '/YTs.npy', YTs)
-np.save('output' + '/beta.npy', beta)
-np.save('output' + '/tLs.npy', tLs)
-np.save('output' + '/tNs.npy', tNs)
-np.save('output' + '/tTs.npy', tTs)
-np.save('output' + '/X.npy', X)
-np.save('output' + '/Y.npy', Y)
-np.save('output' + '/Sigma.npy', Sigma)
+np.save('LR_' + str(step) + '/mLs.npy', mLs)
+np.save('LR_' + str(step) + '/mNs.npy', mNs)
+np.save('LR_' + str(step) + '/mTs.npy', mTs)
+
+np.save('LR_' + str(step) + '/CLs.npy', CLs)
+np.save('LR_' + str(step) + '/CNs.npy', CNs)
+np.save('LR_' + str(step) + '/CTs.npy', CTs)
+
+np.save('LR_' + str(step) + '/YLs.npy', YLs)
+np.save('LR_' + str(step) + '/YNs.npy', YNs)
+np.save('LR_' + str(step) + '/YTs.npy', YTs)
+
+np.save('LR_' + str(step) + '/beta.npy', beta)
+
+np.save('LR_' + str(step) + '/tLs.npy', tLs)
+np.save('LR_' + str(step) + '/tNs.npy', tNs)
+np.save('LR_' + str(step) + '/tTs.npy', tTs)
+
+np.save('LR_' + str(step) + '/X.npy', X)
+np.save('LR_' + str(step) + '/Y.npy', Y)
+
+np.save('LR_' + str(step) + '/Sigma.npy', Sigma)
 
