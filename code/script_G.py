@@ -14,16 +14,16 @@ from scipy.linalg import null_space
 from scipy.special import gamma, logit
 from tqdm import tqdm
 
+# Choose number of repetitions for experiment and step size
+step = 0.1
+reps = 1 
+
 import os
 path = os.getcwd() + "/Gaussian_" + str(step) 
 try:
     os.mkdir(path)
 except:
     print("Path already created, overwriting contents")
-
-# Choose number of repetitions for experiment and step size
-step = 0.1
-reps = 1 
 
 # Parameters
 d = 100 
@@ -35,6 +35,10 @@ bi = 1000
 p = 2
 # initialization
 x0 = np.ones(shape=(d,))
+
+# note: due to faster iterations, create 10x as many samples for ULA and TULA
+sm = 10
+
 
 ###################################################
 # define the necessary functions for the Langevin Algorithms 

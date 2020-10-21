@@ -37,6 +37,9 @@ bi = 500
 #initial parameter
 beta0 = np.ones(shape=(d,))
 
+# note: due to faster iterations, create 10x as many samples for ULA and TULA
+sm = 10
+
 
 ###################################################
 # generate data
@@ -84,12 +87,12 @@ tNs = np.zeros((N, reps))
 tTs = np.zeros((sm * N, reps))
 
 # initialize optimization object
-ML = mirrorLangevinMC(V, grad_V, grad_V, H_V, inv_grad = True)
+ML = mirrorLangevinMC(V, grad_V, grad_V, H_V, inv_grad_V = True)
 
 for r in tqdm(range(reps)):
-    mLs[:, r], CLs[:, :, r], YLs[:, :, r], tLs[:, r] = ML.ULA(x0, 0.1, sm * N, burn_in = bi, quiet = True)
-    mNs[:, r], CNs[:, :, r], YNs[:, :, r], tNs[:, r] = ML.NLA(x0, 0.001, N, burn_in = bi, quiet = True)
-    mTs[:, r], CTs[:, :, r], YTs[:, :, r], tTs[:, r] = ML.TULA(x0, 0.001, sm * N, gamma = 0.01, burn_in = bi, quiet = True)
+    mLs[:, r], CLs[:, :, r], YLs[:, :, r], tLs[:, r] = ML.ULA(beta0, 0.1, sm * N, burn_in = bi, quiet = True)
+    mNs[:, r], CNs[:, :, r], YNs[:, :, r], tNs[:, r] = ML.NLA(beta0, 0.001, N, burn_in = bi, quiet = True)
+    mTs[:, r], CTs[:, :, r], YTs[:, :, r], tTs[:, r] = ML.TULA(beta0, 0.001, sm * N, gamma = 0.01, burn_in = bi, quiet = True)
 
 
 ####################################

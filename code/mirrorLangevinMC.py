@@ -1,7 +1,5 @@
 import numpy as np
 import math
-import matplotlib.pyplot as plt
-import seaborn as sns
 from numpy.linalg import inv
 from numpy.linalg import norm
 from scipy.linalg import sqrtm
@@ -103,6 +101,7 @@ class mirrorLangevinMC:
                     step * self.grad_V(X) +
                     np.sqrt(2*step)*np.random.multivariate_normal(np.zeros((d,)), self.H_phi(X)))
 
+        ts = np.zeros(N)
         for i in tqdm(range(N), disable = quiet):
           m1 += X / N
           m2 += np.outer(X, X) / N
@@ -116,7 +115,8 @@ class mirrorLangevinMC:
                     step * self.grad_V(X) +
                     np.sqrt(2*step)*np.random.multivariate_normal(np.zeros((d,)), self.H_phi(X)))
           Y[:, i] = X
-        return m1, m2, Y
+          ts[i] = time()
+        return m1, m2, Y, ts
     
     # Unadjusted Langevin Algorithm
     def ULA(self, x0, step, N, burn_in = 10**3, quiet = False):

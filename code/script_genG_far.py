@@ -95,7 +95,7 @@ tNs = np.zeros((N, reps))
 tTs = np.zeros((sm*N, reps))
 tMs = np.zeros((N, reps))
 
-ML = mirrorLangevinMC(V, grad_V, grad_V_star, H_V, inv_grad = True)
+ML = mirrorLangevinMC(V, grad_V, grad_V_star, H_V)
 ML.phi = lambda x: phi(x)
 ML.grad_phi = lambda x: grad_phi(x)
 ML.grad_phi_star = lambda x: grad_phi_star(x)
