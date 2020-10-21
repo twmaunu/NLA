@@ -11,23 +11,5 @@ To install requirements:
 pip install -r requirements.txt
 ```
 
-## Sampling 
-
-To sample from a distribution, implement the following code: 
-
-```
-
-```
-
-## Evaluation 
-
-To evaluate samples,
-
-```
-
-```
-
-## Results
-
 
 
