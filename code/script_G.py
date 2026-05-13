@@ -15,8 +15,8 @@ from scipy.special import gamma, logit
 from tqdm import tqdm
 
 # Choose number of repetitions for experiment and step size
-step = 0.1
-reps = 1 
+step = 0.7
+reps = 20 
 
 import os
 path = os.getcwd() + "/Gaussian_" + str(step) 
@@ -42,7 +42,7 @@ sm = 10
 
 ###################################################
 # define the necessary functions for the Langevin Algorithms 
-Sigma = np.diag(np.linspace(1, 101, d)) 
+Sigma = np.diag(np.linspace(1, 100, d)) 
 D = inv(sqrtm(Sigma))
 V = scale_V(V_p(p), D)
 grad_V = scale_grad_V(grad_V_p(p), D)

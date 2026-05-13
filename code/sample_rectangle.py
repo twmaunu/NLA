@@ -1,5 +1,3 @@
-
-
 import numpy as np
 import math
 import matplotlib.pyplot as plt
@@ -7,8 +5,7 @@ from numpy.linalg import inv
 from numpy.linalg import norm
 from scipy.linalg import sqrtm
 from scipy.linalg import null_space
-
-
+import seaborn as sns
 
 
 # why do we need these imports?
@@ -115,7 +112,7 @@ ax.scatter(X_nla2[0], X_nla1[0], c='darkorange')
 ax.grid(True)
 # ax.set_xticklabels([])
 # ax.set_yticklabels([])
-plt.savefig('rect.pdf', bbox_inches='tight')
+plt.savefig('plots/rect.pdf', bbox_inches='tight')
 
 
 
@@ -310,9 +307,9 @@ for i in range(maxiter):
 
 
 
-np.save("X_nla_loss2", X_nla_loss)
-np.save("X_pla_loss2", X_pla_loss)
-np.save("X_mala_loss2", X_mala_loss)
+np.save("plots/X_nla_loss2", X_nla_loss)
+np.save("plots/X_pla_loss2", X_pla_loss)
+np.save("plots/X_mala_loss2", X_mala_loss)
 
 
 

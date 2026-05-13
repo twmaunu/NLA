@@ -15,7 +15,7 @@ from tqdm import tqdm
 
 # Choose number of repetitions for experiment and step size
 step = 0.1
-reps = 1 
+reps = 20 
 
 # parse and create directory
 import os
@@ -55,7 +55,8 @@ def V(x):
 def grad_V(x):
     return x / np.linalg.norm(x) + c * (x - offset) 
 def grad_V_star(x):
-    return (x - x / np.linalg.norm(x)) / c
+    z = x + c * offset
+    return (z - z / np.linalg.norm(z)) / c
 def H_V(x):
     return np.eye(np.size(x)) / np.linalg.norm(x) - np.outer(x, x) / np.power(np.linalg.norm(x), 3) + c * np.eye(np.size(x)) 
 

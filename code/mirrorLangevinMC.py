@@ -154,7 +154,7 @@ class mirrorLangevinMC:
             m1 += X / N
             m2 += np.outer(X, X) / N
             grad = self.grad_V(X)
-            grad = grad / (1 + step * np.linalg.norm(grad))
+            grad = grad / (1 + gamma * np.linalg.norm(grad))
             X = X - step * grad + np.sqrt(2*step)*np.random.multivariate_normal(np.zeros((d,)), np.eye(d))
             Y[:, i] = X
             ts[i] = time()
@@ -225,7 +225,7 @@ def mean_dist_true(m_true, Y):
     conv = np.zeros(n)
     conv[0] = np.power(np.linalg.norm(running_mean - m_true), 2)
     for i in range(n-1):
-        running_mean = (i+1) * running_mean / (i+2) + (1) * Y[:, i] / (i+2)
+        running_mean = (i+1) * running_mean / (i+2) + (1) * Y[:, i+1] / (i+2)
         conv[i+1] = np.power(np.linalg.norm(running_mean - m_true), 2)
     return conv
 
@@ -236,7 +236,7 @@ def cov_dist_true(C_true, Y):
     conv = np.zeros(n)
     conv[0] = np.power(np.linalg.norm(C_running - C_true), 1) / np.power(np.linalg.norm(C_true), 1)
     for i in range(n-1):
-        C_running = (i+1) * C_running / (i+2) + (1) * np.outer(Y[:, i], Y[:, i]) / (i+2)
+        C_running = (i+1) * C_running / (i+2) + (1) * np.outer(Y[:, i+1], Y[:, i+1]) / (i+2)
         conv[i+1] = np.power(np.linalg.norm(C_running - C_true), 1) / np.power(np.linalg.norm(C_true), 1)
     return conv
 
